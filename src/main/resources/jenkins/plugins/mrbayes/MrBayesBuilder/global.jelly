@@ -1,0 +1,32 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+	
+	<f:section title="MrBayes">
+		
+		<f:entry title="MrBayes installation" description="List of MrBayes installations" help="/plugin/mrbayes-plugin/help-globalConfig.html">
+			<f:repeatable var="inst" items="${descriptor.installations}">
+				<table width="100%">
+
+					<f:entry title="Name">
+						<f:textbox name="MrBayes.name" value="${inst.name}"
+							checkUrl="'${rootURL}/builder/MrBayesBuilder/required?value='+escape(this.value)" />
+					</f:entry>
+					
+					<f:entry title="Path to executable">
+                        <f:textbox name="MrBayes.pathToExecutable" value="${inst.pathToExecutable}"
+                            checkUrl="'${rootURL}/builder/MrBayesBuilder/required?value='+escape(this.value)" />
+                    </f:entry>
+
+					<f:entry title="">
+						<div align="right">
+							<f:repeatableDeleteButton />
+						</div>
+					</f:entry>
+
+				</table>
+			</f:repeatable>
+		</f:entry>
+		
+	</f:section>
+	
+</j:jelly>
