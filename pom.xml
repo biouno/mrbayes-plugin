@@ -26,6 +26,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<biojava.legacy.version>1.8.2-SNAPSHOT</biojava.legacy.version>
 	</properties>
 
 	<developers>
@@ -46,8 +47,24 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.7</version>
 					<executions>
-
+						<execution>
+							<id>add-source</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>add-source</goal>
+							</goals>
+							<configuration>
+								<sources>
+									<source>${project.build.directory}/generated-sources/localizer</source>
+								</sources>
+							</configuration>
+						</execution>
 					</executions>
 				</plugin>
 				<plugin>
@@ -135,19 +152,66 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<dependencies>
-        <dependency>
-            <artifactId>commons-lang</artifactId>
-            <groupId>commons-lang</groupId>
-            <version>2.5</version>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
+			<version>2.5</version>
+		</dependency>
+		<!-- biojava-legacy modified version -->
+		<dependency>
+			<groupId>org.biojava</groupId>
+			<artifactId>bytecode</artifactId>
+			<version>${biojava.legacy.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/bytecode-${biojava.legacy.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.biojava</groupId>
+			<artifactId>core</artifactId>
+			<version>${biojava.legacy.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/core-${biojava.legacy.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.biojava</groupId>
+			<artifactId>alignment</artifactId>
+			<version>${biojava.legacy.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/alignment-${biojava.legacy.version}.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.biojava</groupId>
+			<artifactId>biojava3-phylo</artifactId>
+			<version>${biojava.legacy.version}</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/phylo-${biojava.legacy.version}.jar</systemPath>
+		</dependency>
+		<!-- test -->
+		<dependency>
+			<groupId>org.jgrapht</groupId>
+			<artifactId>jgrapht-jdk1.5</artifactId>
+			<version>0.7.3</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	<repositories>
 		<repository>
 			<id>m.g.o-public</id>
 			<url>http://maven.glassfish.org/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>biojava-maven-repo</id>
+			<name>BioJava repository</name>
+			<url>http://www.biojava.org/download/maven/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</repository>
 	</repositories>
 

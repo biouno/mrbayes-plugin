@@ -23,6 +23,7 @@
  */
 package jenkins.plugins.mrbayes;
 
+import jenkins.plugins.mrbayes.util.Messages;
 import hudson.CopyOnWrite;
 import hudson.model.Descriptor;
 import hudson.tasks.Builder;
@@ -44,7 +45,7 @@ public class MrBayesBuilderDescriptor extends Descriptor<Builder> {
 
 	public final Class<MrBayesBuilder> builderType = MrBayesBuilder.class;
 	
-	private static final String DISPLAY_NAME = "Invoke MrBayes";
+	private static final String DISPLAY_NAME = Messages.MrBayesDescriptor_DisplayName();
 	
 	@CopyOnWrite
 	private volatile MrBayesInstallation[] installations = new MrBayesInstallation[0];
@@ -93,7 +94,7 @@ public class MrBayesBuilderDescriptor extends Descriptor<Builder> {
 	public FormValidation doRequired(@QueryParameter String value) {
 		FormValidation returnValue = FormValidation.ok();
 		if(StringUtils.isBlank(value)) {
-			returnValue = FormValidation.error("This property is required");
+			returnValue = FormValidation.error(Messages.MrBayesDescriptor_Required());
 		}
 		return returnValue;
 	}

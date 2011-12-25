@@ -11,9 +11,19 @@
 		</select>
 	</f:entry>
 	
-	<f:entry title="Input file">
+	<f:entry title="${%Nexus file}"
+	   help="${rootURL}/../plugin/mrbayes/help-nexusFile.html">
         <f:textbox name="MrBayes.inputFile" value="${instance.inputFile}" 
               checkUrl="'${rootURL}/builder/MrBayesBuilder/required?value='+escape(this.value)" />
     </f:entry>
+    
+    <f:advanced>     
+   
+      <f:entry title="${%Enable mrbayes block check}" 
+        help="${rootURL}/../plugin/mrbayes/help-enableMrBayesBlockCheck.html">
+          <f:checkbox name="MrBayes.enableMrBayesBlockCheck" value="${instance.enableMrBayesBlockCheck}" checked="${instance.enableMrBayesBlockCheck}" default="true" />
+      </f:entry>
+      
+    </f:advanced>
 
 </j:jelly>

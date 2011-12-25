@@ -3,16 +3,16 @@
 	
 	<f:section title="MrBayes">
 		
-		<f:entry title="MrBayes installation" description="List of MrBayes installations" help="/plugin/mrbayes-plugin/help-globalConfig.html">
+		<f:entry title="${%MrBayes installation}" description="${%List of MrBayes installations}">
 			<f:repeatable var="inst" items="${descriptor.installations}">
 				<table width="100%">
 
-					<f:entry title="Name">
+					<f:entry title="${%Name}">
 						<f:textbox name="MrBayes.name" value="${inst.name}"
 							checkUrl="'${rootURL}/builder/MrBayesBuilder/required?value='+escape(this.value)" />
 					</f:entry>
 					
-					<f:entry title="Path to executable">
+					<f:entry title="${%Path to executable}">
                         <f:textbox name="MrBayes.pathToExecutable" value="${inst.pathToExecutable}"
                             checkUrl="'${rootURL}/builder/MrBayesBuilder/required?value='+escape(this.value)" />
                     </f:entry>
